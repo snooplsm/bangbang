@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MyActivity</string>
+    <string name="bluetooth_uuid">5a90f2fc-c064-4516-9c78-9866e82ec554</string>
+    <string name="bluetooth_sdp_name">bangbang</string>
+</resources>
