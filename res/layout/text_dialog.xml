@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:minWidth="280dip"
+    >
+
+<EditText
+    android:id="@+id/text"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:padding="5dip"
+    android:autoText="false"
+    />
+
+<Button
+    android:id="@android:id/button1"
+    android:text="@android:string/ok"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_horizontal"
+    android:minWidth="75dip"
+    android:padding="5dip"
+/>
+
+</LinearLayout>

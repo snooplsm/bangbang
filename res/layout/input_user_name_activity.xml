@@ -6,18 +6,12 @@
     >
 <TextView
     android:id="@+id/phone_number"
-    android:layout_width="fill_parent" 
-    android:layout_height="wrap_content" 
-    android:text="Hello World, MyActivity"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:text="Enter a name or select one already provided from below.  This is what your enemies will know you by."
     />
 
-<Button
-    android:id="@+id/scan_devices"
-    android:layout_width="fill_parent"
-    android:layout_height="60dip"
-    android:text="scan for devices"/>
-
-<ListView android:id="@+id/devices" android:layout_width="fill_parent"
+<ListView android:id="@+id/user_names" android:layout_width="fill_parent"
         android:layout_height="wrap_content"></ListView>
 </LinearLayout>
 

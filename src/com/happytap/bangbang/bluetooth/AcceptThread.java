@@ -41,8 +41,15 @@ public class AcceptThread extends Thread {
         BluetoothSocket socket = null;
         // Keep listening until exception occurs or a socket is returned
         while (true) {
+            Log.d(getClass().getSimpleName(),"run loop");
             try {
                 socket = mmServerSocket.accept();
+                Log.d(getClass().getSimpleName(), "run loop opened");
+                mApplication.receiveConnection(socket);
+                //InputStream os = socket.getInputStream();
+                //byte[] data = new byte[100];
+                //os.read(data);
+                //Log.i("acceptthread",new String(data));
             } catch (IOException e) {
                 break;
             }
