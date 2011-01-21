@@ -6,6 +6,8 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.media.MediaPlayer;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
@@ -31,6 +33,14 @@ public class ShootGunActivity extends Activity implements SensorEventListener, V
 
     private FileOutputStream fos;
     private FileOutputStream canShoot;
+
+    private MediaPlayer[] gunShot;
+    private int gunShotIndex = 1;
+    private int maxGunShots = 3;
+
+    private MediaPlayer bulletWhizBy;
+    private MediaPlayer bulletHitsGround;
+    private MediaPlayer bulletHitsSelf;
 
 
     private TextView x;
@@ -60,6 +70,16 @@ public class ShootGunActivity extends Activity implements SensorEventListener, V
             canShoot = getApplication().openFileOutput("canshoot.csv", Context.MODE_WORLD_READABLE);
         } catch (FileNotFoundException e) {
             e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+        }
+
+        makeGunShots();
+        bulletWhizBy = MediaPlayer.create(this, R.raw.bullet_whiz);
+    }
+
+    protected void makeGunShots() {
+        for(int i = 0; i < maxGunShots; i++) {
+            gunShot[i] = MediaPlayer.create(this, R.raw.ps45);
+            gunShot[i].prepareAsync();
         }
     }
 
@@ -102,6 +122,15 @@ public class ShootGunActivity extends Activity implements SensorEventListener, V
          float x = xyz[0];
          float y = xyz[1];
          float z = xyz[2];
+        new AsyncTask<Void, Void, Void>() {
+            @Override
+            protected Void doInBackground(Void... voids) {
+                boolean played = false;
+                gunShotIndex+=1;
+                gunShot[gunShotIndex%maxGunShots].start();
+                return null;
+            }
+        }.execute();
         String f = lastEvent.timestamp+","+x + "," + y + "," + z+"\n";
          try {canShoot.write(f.getBytes());
             canShoot.flush();
